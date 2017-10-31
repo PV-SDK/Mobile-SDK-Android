@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languages">
+        <item>UART</item>
+        <item>CAN</item>
+        <item>I2C</item>
+        <item>SPI</item>
+        <item>GPIO</item>
+        <item>CAN滤波</item>
+    </string-array>
+
+    <string-array name="uart_bps">
+        <item>9600</item>
+        <item>14400</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
+
+    <string-array name="uart_dataBits">
+        <item>8位</item>
+        <item>9位</item>
+    </string-array>
+
+    <string-array name="uart_stopBits">
+        <item>1位</item>
+        <item>2位</item>
+    </string-array>
+
+    <string-array name="uart_parity">
+        <item>无校验</item>
+        <item>奇校验</item>
+        <item>偶校验</item>
+    </string-array>
+
+    <string-array name="uart_flowCtrl">
+        <item>无流控</item>
+        <item>RTS有效</item>
+        <item>CTS有效</item>
+        <item>RTS和CTS同时有效</item>
+    </string-array>
+
+    <string-array name="can_mode">
+        <item>正常模式</item>
+        <item>静默模式</item>
+        <item>回环模式</item>
+        <item>静默回环模式</item>
+    </string-array>
+
+    <string-array name="can_bps">
+        <item>5K</item>
+        <item>10K</item>
+        <item>20K</item>
+        <item>50K</item>
+        <item>100K</item>
+        <item>125K</item>
+        <item>250K</item>
+        <item>500K</item>
+        <item>800K</item>
+        <item>1000K</item>
+    </string-array>
+
+    <string-array name="i2c_bps">
+        <item>100kbps</item>
+        <item>400kbps</item>
+    </string-array>
+
+    <string-array name="i2c_mode">
+        <item>主模式</item>
+        <item>从模式</item>
+    </string-array>
+
+    <string-array name="spi_bps">
+        <item>1Mbps</item>
+        <item>2Mbps</item>
+        <item>4Mbps</item>
+        <item>8Mbps</item>
+        <item>16Mbps</item>
+    </string-array>
+
+    <string-array name="spi_mode">
+        <item>主模式</item>
+        <item>从模式</item>
+    </string-array>
+
+    <string-array name="spi_firstBit">
+        <item>MSB first</item>
+        <item>LSB first</item>
+    </string-array>
+
+
+    <string-array name="spi_dataSize">
+        <item>8位</item>
+        <item>16位</item>
+    </string-array>
+
+
+    <string-array name="spi_crcEnable">
+        <item>不使能crc</item>
+        <item>使能crc</item>
+    </string-array>
+
+    <string-array name="gpio_num">
+        <item>GPIO1</item>
+        <item>GPIO2</item>
+        <item>GPIO3</item>
+    </string-array>
+
+
+</resources>

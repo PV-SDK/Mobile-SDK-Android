@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">gcs_api</string>
+
+    <string name="text_sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="waring">温馨提示</string>
+
+    <string name="mount">挂载</string>
+    <string name="umount">卸载</string>
+</resources>
