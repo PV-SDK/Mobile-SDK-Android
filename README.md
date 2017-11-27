@@ -15,14 +15,18 @@ Developer's Guide and API document.
     Environment(JDK7+  AndroidStudio 3.0+)
 
 ## Calling Steps
- 
+``` java 
   Initialize sdk  
  mPowerSDK = PowerSDK.getInstance();  
+ 
   Connect device    
- mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());    
+ mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());   
+ 
   Set up connection monitor    
  mPowerSDK.addConnectListener(simpleConnectListener);   
   The callback for connection (For a simple example, refer to the specific sdk example) 
+```
+
 ``` java 
 ConnectListener.SimpleConnectListener simpleConnectListener = new ConnectListener.SimpleConnectListener() {
     @Override
