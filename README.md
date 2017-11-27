@@ -57,6 +57,6 @@ ConnectListener.SimpleConnectListener simpleConnectListener = new ConnectListene
 Demo and the SDK document instructions for more details about api.(include apk and doc.)  
 
 **The following picture is PowerEye**
-![](https://github.com/kjergit/dailypractice/blob/master/powerEye.jpg?raw=true)
+![](https://github.com/PV-SDK/Mobile-SDK-Android/blob/master/powervision-sdk-demo/gcs_api/powerEye.jpg?raw=true)
 
 For more information about products,please visit our [website](http://www.powervision.me/en/)
