@@ -11,8 +11,8 @@ Sample code and tutorial(Users will have preliminary understandings through samp
 Developer's Guide and API document.
 
 ## Required
-    PowerEye
-    Environment(JDK7+  AndroidStudio 3.0+)
+  - PowerEye  
+  - Environment(JDK7+  AndroidStudio 3.0+)
 
 ## Calling Steps
 ``` java 
