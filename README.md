@@ -17,7 +17,7 @@ Developer's Guide and API document.
 ## Calling Steps
 ``` java 
   Initialize sdk  
- mPowerSDK = PowerSDK.getInstance();  
+ mPowerSDK = PowerSDK.getInstance();  aaaa
  
   Connect device    
  mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());   
