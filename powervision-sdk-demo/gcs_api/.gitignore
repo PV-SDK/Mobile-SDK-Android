@@ -8,6 +8,9 @@
 /captures
 .externalNativeBuild
 /powervisionsdk/
-/build/
+/gradle
+*.jks
+
+
 
 
