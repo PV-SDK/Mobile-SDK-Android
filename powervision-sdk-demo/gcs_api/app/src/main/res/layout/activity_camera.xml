@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.vxfly.vflibrary.video.VFSurfaceView
+        android:id="@+id/camera_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/battery_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/connecting" />
+
+        <TextView
+            android:id="@+id/battery_electricity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/connecting" />
+
+        <TextView
+            android:id="@+id/battery_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/connecting" />
+
+        <TextView
+            android:id="@+id/battery_cycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/connecting" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/funnction_layout"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/camera_conn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_conn" />
+
+        <Button
+            android:id="@+id/camera_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_mode" />
+
+        <Button
+            android:id="@+id/camera_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_record" />
+
+        <Button
+            android:id="@+id/camera_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_settings" />
+
+        <Button
+            android:id="@+id/camera_setting_hide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hide_camera" />
+
+        <Button
+            android:id="@+id/battery_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/battery_info" />
+
+        <Button
+            android:id="@+id/control_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/control" />
+
+        <LinearLayout
+            android:id="@+id/remote_control_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/remote_control_japan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/japan" />
+
+            <Button
+                android:id="@+id/remote_control_america"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/us" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contrlo_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/control_top"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="↑"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/contral_left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="←"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/contral_right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="→"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/contral_bottom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="↓"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--invisable settings -->
+    <ScrollView
+        android:id="@+id/camera_setting_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/funnction_layout"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/light_blue"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/camera_setting" />
+
+            <!--iso-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/iso" />
+
+                <Spinner
+                    android:id="@+id/iso_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_ISO" />
+            </LinearLayout>
+
+            <!--光圈大小-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/aperture" />
+
+                <Spinner
+                    android:id="@+id/aperture_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_APE_V" />
+            </LinearLayout>
+
+
+            <!--ev-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/ev" />
+
+                <Spinner
+                    android:id="@+id/ev_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_EXP_MU" />
+            </LinearLayout>
+
+            <!--拍照快门速度-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/shutter_speed" />
+
+                <Spinner
+                    android:id="@+id/shutter_speed_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_P_S_S" />
+            </LinearLayout>
+
+
+            <!--摄像快门速度-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/record_shutter_speed" />
+
+                <Spinner
+                    android:id="@+id/record_shutter_speed_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_V_S_S" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/single_shot" />
+
+                <Spinner
+                    android:id="@+id/single_shot_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_SM" />
+            </LinearLayout>
+
+            <!--连拍速度-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/continuous_shot" />
+
+                <Spinner
+                    android:id="@+id/continuous_shot_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_SS" />
+            </LinearLayout>
+
+            <!--定时拍-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/timing_shot" />
+
+                <Spinner
+                    android:id="@+id/timing_shot_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_D_TIME" />
+            </LinearLayout>
+
+            <!--照片尺寸-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/photo_size" />
+
+                <Spinner
+                    android:id="@+id/photo_size_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_P_SIZE" />
+            </LinearLayout>
+
+
+            <!--照片质量-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/photo_quality" />
+
+                <Spinner
+                    android:id="@+id/photo_quality_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_P_Q" />
+            </LinearLayout>
+            <!--视频分辨率-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/frequency_ratio" />
+
+                <Spinner
+                    android:id="@+id/record_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_V_SIZE" />
+            </LinearLayout>
+
+
+            <!--   通用设置-->
+            <!--白平衡 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/white_balance" />
+
+                <Spinner
+                    android:id="@+id/white_balance_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_WB" />
+            </LinearLayout>
+            <!--图像亮度 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/brightness" />
+
+                <Spinner
+                    android:id="@+id/brightness_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_BN_V" />
+            </LinearLayout>
+
+            <!--图像饱和度 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/saturation" />
+
+                <Spinner
+                    android:id="@+id/saturation_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_SATUR_V" />
+            </LinearLayout>
+
+            <!--图像对比度 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/contrast" />
+
+                <Spinner
+                    android:id="@+id/contrast_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_CONTRA_V" />
+            </LinearLayout>
+
+            <!--测光模式 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/metering_mode" />
+
+                <Spinner
+                    android:id="@+id/metering_mode_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_LT" />
+            </LinearLayout>
+
+            <!--AF模式 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/af_mode" />
+
+                <Spinner
+                    android:id="@+id/af_mode_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_AF_MODE" />
+            </LinearLayout>
+
+            <!--OSD开关 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/osd" />
+
+                <Spinner
+                    android:id="@+id/osd_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_OSD_ON" />
+            </LinearLayout>
+
+            <!--图像锐度 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/image_sharpness" />
+
+                <Spinner
+                    android:id="@+id/image_sharpness_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/PV_CAM_ACUT_V" />
+            </LinearLayout>
+
+            <!--显示 手动模式的白平衡值-->
+            <TextView
+                android:id="@+id/white_balance_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/white_balance_value" />
+            <!--手动设置白平衡值 -->
+            <Button
+                android:id="@+id/set_white_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置白平衡" />
+            <!--拍照剩余张数-->
+            <Button
+                android:id="@+id/take_picture_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pic_count" />
+            <!--恢复出厂设置-->
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset" />
+            <!--格式化sd卡-->
+            <Button
+                android:id="@+id/format_sd_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/format_sd" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

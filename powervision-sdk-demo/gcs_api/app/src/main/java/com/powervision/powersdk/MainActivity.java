@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.send_btn)
     Button sendBtn;
     @BindView(R.id.send_content)
+
     EditText sendContent;
     @BindView(R.id.stop)
     Button stop;
@@ -139,12 +140,16 @@ public class MainActivity extends AppCompatActivity {
     private int currentUartStopBits = 0;
     private int currentUartParity = 0;
     private int currentUartFlowCtrl = 0;
+    private int currentUartState = 0;
 
     private int currentCanBps = 0;
     private int currentCanMode = 0;
+    private int currentCanState = 0;
 
     private int currentI2cMode = 0;
     private int currentI2cSpeed = 0;
+    private int currentI2cState = 0;
+
     private int currentI2cAddress = 0;
 
     private int currentSpiBps = 0;
@@ -152,8 +157,10 @@ public class MainActivity extends AppCompatActivity {
     private int currentSpiFirstBit = 0;
     private int currentSpiDataSize = 0;
     private int currentSpiCrcEnable = 0;
+    private int currentSpiState = 0;
 
     private int currentGpioDeviceNum = 0;
+    private int currentGpioState = 0;
 
     //0,未连接；1，链路已连接；2，设备已连接；3，设备已断开；4，链路已断开
     private int mConnectStatus = 0;
@@ -188,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mPowerSDK = PowerSDK.getInstance();
+
         mPowerSDK.addConnectListener(simpleConnectListener);
         mPowerSDK.addMountDeviceStateListener(mountDeviceStateListener);
 
@@ -601,11 +609,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUartParam() {
-        mPowerSDK.setUartParam(currentUartBps, currentUartDataBits, currentUartStopBits, currentUartParity, currentUartFlowCtrl);
+        mPowerSDK.setUartParam(currentUartBps, currentUartDataBits, currentUartStopBits, currentUartParity, currentUartFlowCtrl, currentUartState);
     }
 
     private void setCanParam() {
-        mPowerSDK.setCanParam(currentCanBps, currentCanMode);
+        mPowerSDK.setCanParam(currentCanBps, currentCanMode, currentCanState);
     }
 
     private void setI2cParam() {
@@ -615,11 +623,11 @@ public class MainActivity extends AppCompatActivity {
         }
         String address = i2cMacAddress.getText().toString().trim();
         int addressInt = Integer.parseInt(address);
-        mPowerSDK.setI2cParam(currentI2cSpeed, currentCanMode, addressInt);
+        mPowerSDK.setI2cParam(currentI2cSpeed, currentCanMode, addressInt, currentI2cState);
     }
 
     private void setSpiParam() {
-        mPowerSDK.setSpiParam(currentSpiBps, currentSpiMode, currentSpiFirstBit, currentSpiDataSize, currentSpiCrcEnable);
+        mPowerSDK.setSpiParam(currentSpiBps, currentSpiMode, currentSpiFirstBit, currentSpiDataSize, currentSpiCrcEnable, currentSpiState);
     }
 
     private void setGpioParam() {
@@ -636,7 +644,7 @@ public class MainActivity extends AppCompatActivity {
         int peridRadioInt = Integer.parseInt(peridRadio);
         int lowLastTimeInt = Integer.parseInt(lowLastTime);
         int highLastTimeInt = Integer.parseInt(highLastTime);
-        mPowerSDK.setGpioParam(currentGpioDeviceNum, peridRadioInt, lowLastTimeInt, highLastTimeInt);
+        mPowerSDK.setGpioParam(currentGpioDeviceNum, peridRadioInt, lowLastTimeInt, highLastTimeInt, currentGpioState);
     }
 
     private void setCanFilterParam() {
@@ -699,8 +707,11 @@ public class MainActivity extends AppCompatActivity {
         mPowerSDK.deleteCanFilterParam(number);
     }
 
+    /**
+     * 点击连接设备 ，执行设备连接
+     */
     private void startPowerSDK() {
-        mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());
+        mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());// ip = "192.168.1.12"; port = 20002;
         mPowerSDK.startRegisterConnectCallback();
         mPowerSDK.startRegisterMountCallback();
         mPowerSDK.startConnectChain();
@@ -709,7 +720,7 @@ public class MainActivity extends AppCompatActivity {
     private void stopPowerSDK() {
         mPowerSDK.startDisconnectDevice();
         mPowerSDK.startDisconnectChain();
-        mPowerSDK.startDisconnectSDK();
+//        mPowerSDK.startDisconnectSDK();
         mPowerSDK.removeConnectListener(simpleConnectListener);
     }
 
@@ -767,8 +778,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     MountDeviceListener.MountDeviceStateListener mountDeviceStateListener = new MountDeviceListener.MountDeviceStateListener() {
+
         @Override
-        public void mountState(final int uart, final int can, final int i2c, final int spi, final int gpio1, final int gpio2, final int gpio3) {
+        public void mountState(final int uart, final int can, final int i2c, final int spi, final int gpio1, final int gpio2, final int gpio3, final int state) {
             Log.e(TAG, "mountState uart: " + uart);
             Log.e(TAG, "mountState can: " + can);
             Log.e(TAG, "mountState i2c: " + i2c);
@@ -776,12 +788,13 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "mountState gpio: " + gpio1);
             Log.e(TAG, "mountState gpio2: " + gpio2);
             Log.e(TAG, "mountState gpio3: " + gpio3);
+            Log.e(TAG, "mountState state: " + state);
 
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    showPortDialog(uart, can, i2c, spi, gpio1, gpio2, gpio3);
+                    showPortDialog(uart, can, i2c, spi, gpio1, gpio2, gpio3 );
                 }
             });
         }
@@ -826,14 +839,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onUartParamInquire(final int bps, final int dataBits, final int stopBits, final int parity, final int flowCtrl) {
+        public void onUartParamInquire(final int bps, final int dataBits, final int stopBits, final int parity, final int flowCtrl, final int state) {
             Log.e(TAG, "onUartParamInquire bps: " + bps);
             Log.e(TAG, "onUartParamInquire dataBits: " + dataBits);
             Log.e(TAG, "onUartParamInquire stopBits: " + stopBits);
             Log.e(TAG, "onUartParamInquire parity: " + parity);
             Log.e(TAG, "onUartParamInquire flowCtrl: " + flowCtrl);
-
-
+            Log.e(TAG, "onUartParamInquire state: " + state);
 
 
             runOnUiThread(new Runnable() {
@@ -848,7 +860,7 @@ public class MainActivity extends AppCompatActivity {
 
                     StandardDialogUtils.defaultDialog(MainActivity.this,
                             "波特率：" + uartBps[bps] + "\n 停止位数：" + uartStopBits[stopBits] + "\n 流控：" + uartControl[flowCtrl] +
-                                    "\n 数据位数：" + uartBits[dataBits] + "\n 校验：" + canCheck[parity]);
+                                    "\n 数据位数：" + uartBits[dataBits] + "\n 校验：" + canCheck[parity] + "\n state:" + state);
                 }
             });
         }
@@ -884,7 +896,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-
     MountDeviceListener.CanListener canListener = new MountDeviceListener.CanListener() {
         @Override
         public void onCanParamSet(final int state, final int error) {
@@ -906,8 +917,6 @@ public class MainActivity extends AppCompatActivity {
         public void onCanParamInquire(final int bps, final int mode) {
             Log.e(TAG, "onCanParamInquire mode:" + mode);
             Log.e(TAG, "onCanParamInquire bps:" + bps);
-
-
 
 
             runOnUiThread(new Runnable() {
@@ -971,7 +980,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "onI2cParamInquire mode:" + mode);
             Log.e(TAG, "onI2cParamInquire bps:" + bps);
             Log.e(TAG, "onI2cParamInquire deviceAddr:" + deviceAddr);
-
 
 
             runOnUiThread(new Runnable() {

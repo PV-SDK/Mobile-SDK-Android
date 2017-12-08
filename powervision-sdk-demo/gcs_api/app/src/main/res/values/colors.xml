@@ -7,4 +7,5 @@
     <color name="black">#000000</color>
     <color name="connecting">#00ff00</color>
     <color name="red">@android:color/holo_red_dark</color>
+    <color name="light_blue">#A0ADEB</color>
 </resources>
