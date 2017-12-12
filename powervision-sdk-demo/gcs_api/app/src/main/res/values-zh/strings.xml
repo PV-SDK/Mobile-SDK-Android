@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">gcs_api</string>
+
+    <string name="text_sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="waring">温馨提示</string>
+
+    <string name="mount">挂载</string>
+    <string name="umount">卸载</string>
+    <string name="camera_control">图像与控制</string>
+    <string name="camera_mode">切换模式</string>
+    <string name="camera_take_photo">拍照</string>
+    <string name="camera_record">视频录制</string>
+    <string name="camera_settings">相机参数</string>
+    <string name="camera_conn">开始连接</string>
+    <string name="stop">停止</string>
+    <string name="capacity">电池容量:</string>
+    <string name="cycles">循环次数:</string>
+    <string name="electricity">当前电量:</string>
+    <string name="temperature">温度:</string>
+    <string name="temperature_tag">℃</string>
+    <string name="percentage">%</string>
+    <string name="capacity_unit">mAh</string>
+    <string name="format_sd">格式化sd卡</string>
+    <string name="reset">恢复出厂设置</string>
+    <string name="pic_count">拍照剩余张数</string>
+    <string name="single_shot">单拍</string>
+    <string name="image_sharpness">图像锐度</string>
+    <string name="osd">OSD开关</string>
+    <string name="af_mode">AF模式</string>
+    <string name="metering_mode">测光模式</string>
+    <string name="contrast">图像对比度</string>
+    <string name="saturation">图像饱和度</string>
+    <string name="brightness">图像亮度</string>
+    <string name="white_balance">白平衡</string>
+    <string name="frequency_ratio">视频分辨率</string>
+    <string name="photo_quality">照片质量</string>
+    <string name="photo_size">照片尺寸</string>
+    <string name="timing_shot">定时拍</string>
+    <string name="continuous_shot">连拍速度</string>
+    <string name="record_shutter_speed">摄像快门速度</string>
+    <string name="shutter_speed">拍照快门速度</string>
+    <string name="ev">ev</string>
+    <string name="aperture">光圈大小</string>
+    <string name="iso">iso</string>
+    <string name="camera_setting">相机参数设置</string>
+    <string name="us">美</string>
+    <string name="japan">日</string>
+    <string name="control">遥控器控制</string>
+    <string name="battery_info">电池信息</string>
+    <string name="read_data">读取数据</string>
+    <string name="clear_data">清除数据</string>
+    <string name="send_data">发送数据</string>
+    <string name="send_data_zone">发送数据显示区</string>
+    <string name="disconn_device">断开设备</string>
+    <string name="port_management">端口管理</string>
+    <string name="inquire">查询</string>
+    <string name="setting">设置</string>
+    <string name="receive_data_display_area">接收数据显示区</string>
+    <string name="disconnected">未连接</string>
+    <string name="connect_devies">连接设备</string>
+    <string name="hide_camera">隐藏相机设置</string>
+    <string name="white_balance_value">白平衡值：</string>
+
+
+</resources>

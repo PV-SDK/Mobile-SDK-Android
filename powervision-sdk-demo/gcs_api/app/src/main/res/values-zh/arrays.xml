@@ -6,7 +6,7 @@
         <item>I2C</item>
         <item>SPI</item>
         <item>GPIO</item>
-        <item>CAN filter</item>
+        <item>CAN滤波</item>
     </string-array>
 
     <string-array name="uart_bps">
@@ -19,33 +19,33 @@
     </string-array>
 
     <string-array name="uart_dataBits">
-        <item>8bits</item>
-        <item>9bits</item>
+        <item>8位</item>
+        <item>9位</item>
     </string-array>
 
     <string-array name="uart_stopBits">
-        <item>1bits</item>
-        <item>2bits</item>
+        <item>1位</item>
+        <item>2位</item>
     </string-array>
 
     <string-array name="uart_parity">
-        <item>No verification</item>
-        <item>odd parity check</item>
-        <item>even parity check</item>
+        <item>无校验</item>
+        <item>奇校验</item>
+        <item>偶校验</item>
     </string-array>
 
     <string-array name="uart_flowCtrl">
-        <item>No fluid control</item>
-        <item>RTS is effective</item>
-        <item>CTS is effective</item>
-        <item>RTS和CTS are effective at the same time</item>
+        <item>无流控</item>
+        <item>RTS有效</item>
+        <item>CTS有效</item>
+        <item>RTS和CTS同时有效</item>
     </string-array>
 
     <string-array name="can_mode">
-        <item>Normal mode</item>
-        <item>Silent mode</item>
-        <item>Loopback mode</item>
-        <item>Silent loopback mode</item>
+        <item>正常模式</item>
+        <item>静默模式</item>
+        <item>回环模式</item>
+        <item>静默回环模式</item>
     </string-array>
 
     <string-array name="can_bps">
@@ -67,8 +67,8 @@
     </string-array>
 
     <string-array name="i2c_mode">
-        <item>Master mode</item>
-        <item>Slave mode</item>
+        <item>主模式</item>
+        <item>从模式</item>
     </string-array>
 
     <string-array name="spi_bps">
@@ -80,8 +80,8 @@
     </string-array>
 
     <string-array name="spi_mode">
-        <item>Master mode</item>
-        <item>Slave mode</item>
+        <item>主模式</item>
+        <item>从模式</item>
     </string-array>
 
     <string-array name="spi_firstBit">
@@ -91,14 +91,14 @@
 
 
     <string-array name="spi_dataSize">
-        <item>8bits</item>
-        <item>16bits</item>
+        <item>8位</item>
+        <item>16位</item>
     </string-array>
 
 
     <string-array name="spi_crcEnable">
-        <item>Not enablecrc</item>
-        <item>Enable crccrc</item>
+        <item>不使能crc</item>
+        <item>使能crc</item>
     </string-array>
 
     <string-array name="gpio_num">
@@ -110,7 +110,7 @@
 
     <!--  camera settings start -->
 
-    <!--    primary configuration     -->
+    <!--   基本设置     -->
     <!--ISO-->
     <string-array name="PV_CAM_ISO">
         <item>auto</item>
@@ -135,7 +135,7 @@
         <item>6400</item>
     </string-array>
 
-    <!--aperture siz-->
+    <!--光圈大小-->
     <string-array name="PV_CAM_APE_V">
         <item>2.5</item>
         <item>2.8</item>
@@ -159,7 +159,7 @@
         <item>22.0</item>
     </string-array>
 
-    <!--ev value  exposure compensation-->
+    <!--ev值  曝光补偿-->
     <string-array name="PV_CAM_EXP_MU">
         <item>-3.0</item>
         <item>-2.7</item>
@@ -214,7 +214,7 @@
         <item>196</item>
     </string-array>
 
-    <!--Camera shutter speed-->
+    <!--拍照快门速度-->
     <string-array name="PV_CAM_P_S_S">
         <item>auto</item>
         <item>1/2s</item>
@@ -238,7 +238,7 @@
         <item>1/250s</item>
         <item>1/320s</item>
     </string-array>
-    <!--Camera shutter speed-->
+    <!--摄像快门速度-->
     <string-array name="PV_CAM_V_S_S">
         <item>auto</item>
         <item>1/240s</item>
@@ -254,25 +254,25 @@
     </string-array>
 
 
-    <!--  Shoot settings  -->
-    <!--Single shot-->
+    <!--  拍照设置  -->
+    <!--单拍-->
     <string-array name="PV_CAM_SM">
-        <item>>Single shot</item>
+        <item>单拍</item>
     </string-array>
-    <!--Burst speed-->
+    <!--连拍速度-->
     <string-array name="PV_CAM_SS">
-        <item>Low speed</item>
-        <item>Low or medium speed</item>
-        <item>Medium speed</item>
+        <item>低速</item>
+        <item>中低速</item>
+        <item>中速</item>
     </string-array>
 
-    <!--Time-lapse shooting-->
+    <!--定时拍-->
     <string-array name="PV_CAM_D_TIME"><!-- values  range  1~60-->
         <item>1</item>
         <item>2</item>
     </string-array>
 
-    <!--Photo size-->
+    <!--照片尺寸-->
     <string-array name="PV_CAM_P_SIZE">
         <item>16M</item>
         <item>12M</item>
@@ -281,7 +281,7 @@
         <item>3M</item>
     </string-array>
 
-    <!--Photo quality-->
+    <!--照片质量-->
     <string-array name="PV_CAM_P_Q">
         <item>Eye_basic</item>
         <item>Eye_fine</item>
@@ -289,8 +289,8 @@
         <item>JPEG+DNG</item>
     </string-array>
 
-    <!--  Record settings  -->
-    <!--Video resolution-->
+    <!--  录像设置  -->
+    <!--视频分辨率-->
     <string-array name="PV_CAM_V_SIZE">
         <item>4k 30</item>
         <item>4k 24</item>
@@ -305,62 +305,62 @@
         <item>WVGAP 30</item>
     </string-array>
 
-    <!-- General Settings  -->
-    <!--White balance-->
+    <!--  通用设置  -->
+    <!--白平衡模式-->
     <string-array name="PV_CAM_WB">
         <item>auto</item>
         <item>manual mode</item><!-- values  range  -100 ~100 -->
     </string-array>
-    <!--Set the white balance value manually-->
-    <string-array name="PV_CAM_WB_V"><!--values   -100~ 100-->
+    <!--手动设置白平衡值-->
+    <string-array name="PV_CAM_WB_V">
         <item>-100</item>
         <item>100</item>
     </string-array>
 
-    <!--brightness-->
+    <!--图像亮度-->
     <string-array name="PV_CAM_BN_V"><!-- values  range  0 ~100 -->
         <item>0</item>
         <item>100</item>
     </string-array>
-    <!--Image Saturation-->
+    <!--图像饱和度-->
     <string-array name="PV_CAM_SATUR_V"><!--values  range   0 ~100 -->
         <item>0</item>
         <item>100</item>
     </string-array>
-    <!--Image Contrast-->
+    <!--图像对比度-->
     <string-array name="PV_CAM_CONTRA_V"><!-- values  range   0 ~100 -->
         <item>0</item>
         <item>100</item>
     </string-array>
-    <!--Metering mode-->
+    <!--测光模式-->
     <string-array name="PV_CAM_LT">
-        <item>Average metering</item>
-        <item>Spot metering</item>
-        <item>Central focus metering</item>
+        <item>平均测光</item>
+        <item>多点测光</item>
+        <item>中央偏重</item>·
     </string-array>
-    <!--AF Mode-->
+    <!--AF模式-->
     <string-array name="PV_CAM_AF_MODE">
-        <item>Normal</item>
-        <item>Free movement</item>
+        <item>正常</item>
+        <item>自由移动</item>
     </string-array>
-    <!--OSD switch-->
+    <!--OSD开关-->
     <string-array name="PV_CAM_OSD_ON">
-        <item>Hide</item>
-        <item>show</item>
+        <item>隐藏</item>
+        <item>显示</item>
     </string-array>
-    <!--Image Sharpness-->
+    <!--图像锐度-->
     <string-array name="PV_CAM_ACUT_V">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
+        <item>低</item>
+        <item>中</item>
+        <item>高</item>
     </string-array>
-    <!--photos can be taken-->
+    <!--剩余拍照数量-->
     <!--PV_CAM_SD_PLEFT-->
 
-    <!--Factory reset-->
+    <!--恢复出厂设置-->
     <!--FACTORY_RESET-->
 
-    <!--Format the SD card-->
+    <!--格式化sd卡-->
     <!--SD_FORMAT-->
 
     <!--camera settings over -->
