@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:minWidth="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <Button
+            android:id="@+id/connect_status"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/device_dis_connect" />
+
+        <Button
+            android:id="@+id/attitude"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/attitude" />
+
+        <Button
+            android:id="@+id/gps_info"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/gps_info" />
+
+        <Button
+            android:id="@+id/set_way_point"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/set_way_point" />
+
+        <Button
+            android:id="@+id/excute_way_point"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/excute_way_point" />
+        <Button
+            android:id="@+id/back_last_mode"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/back_last_mode" />
+
+        <Button
+            android:id="@+id/automatically_return"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/automatic_return" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/item_info_bg"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/attitude_vx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_vx" />
+
+        <TextView
+            android:id="@+id/attitude_vy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_vy" />
+
+        <TextView
+            android:id="@+id/attitude_vz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_vz" />
+
+        <TextView
+            android:id="@+id/attitude_alt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_alt" />
+
+        <TextView
+            android:id="@+id/attitude_relative_alt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_relative_alt" />
+
+        <TextView
+            android:id="@+id/attitude_relative_lat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_lat" />
+
+        <TextView
+            android:id="@+id/attitude_relative_lon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_lon" />
+
+        <TextView
+            android:id="@+id/attitude_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_pitch" />
+
+        <TextView
+            android:id="@+id/attitude_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_roll" />
+
+        <TextView
+            android:id="@+id/attitude_yaw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fly_yaw" />
+
+        <TextView
+            android:id="@+id/satellite_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/satellites_num" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/way_points_layout"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_layout"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/point_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/point_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/point_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/point_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

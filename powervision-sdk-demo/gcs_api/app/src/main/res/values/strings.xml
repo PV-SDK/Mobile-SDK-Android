@@ -62,5 +62,56 @@
     <string name="hide_camera">Hide status</string>
     <string name="white_balance_value">white balance value:</string>
 
+    <!-- v1.2-->
+    <string name="attitude">Get attitude information</string>
+    <string name="gps_info">GPS information </string>
+    <string name="device_dis_connect">device not connected</string>
+    <string name="set_way_point">Set the waypoint</string>
+    <string name="automatic_return">Automatic return</string>
+    <string name="device_connected">Device is connected</string>
+    <string name="position">Flight control and coordinate</string>
+    <string name="excute_way_point">Waypoint flight start</string>
+    <string name="satellites_num">Satellites number</string>
+    <string name="sd_empty">SD card is empty</string>
+    <string name="sd_full">SD card is full</string>
+    <string name="sd_error">SD card error</string>
+
+    <string name="point_content">lat：%1$f  lon：%2$f  z:%3$fm</string>
+    <string name="attitude_pitch">Pitch angle：%1$f</string>
+    <string name="attitude_roll">Roll angle：%1$f</string>
+    <string name="attitude_yaw">Yaw angle：%1$f</string>
+    <string name="attitude_vx">Velocity of X axial：%1$f m/s</string>
+    <string name="attitude_vy">Velocity of Y axial：%1$f m/s</string>
+    <string name="attitude_vz">Velocity of Z axial：%1$f m/s</string>
+    <string name="attitude_alt">alt：%1$f m</string>
+    <string name="attitude_relative_alt">relativeAlt：%1$f m</string>
+    <string name="attitude_lat">lat：%1$f</string>
+    <string name="attitude_lon">lon：%1$f</string>
+    <string name="attitude_satellites">satellites number：%1$d </string>
+    <string name="fly_yaw">Yaw angle</string>
+    <string name="fly_roll">Roll angle</string>
+    <string name="fly_pitch">Pitch angle</string>
+    <string name="fly_lon">Longitude</string>
+    <string name="fly_lat">Latitude</string>
+    <string name="fly_relative_alt">Absolute height</string>
+    <string name="fly_alt">Altitude</string>
+    <string name="fly_vz">Velocity of Z axial</string>
+    <string name="fly_vy">Velocity of Y axial</string>
+    <string name="fly_vx">Velocity of X axial </string>
+    <string name="auto_rtl">Automatic return</string>
+    <string name="fly_point_set_sukccess">Send the waypoint successfully</string>
+    <string name="plaese_arm">Please unlock</string>
+    <string name="exe_way_point">Waypoint flight</string>
+    <string name="back_last_mode">Return to the last mode</string>
+
+    <string name="mode_not_exe">Not three modes of remote control </string>
+    <string name="way_point_data_errro">Please set the waypoint</string>
+    <string name="please_unlock">Please unlock the device</string>
+    <string name="link_connected">The link is connected</string>
+    <string name="content_not_non">Content cannot be empty</string>
+    <string name="current_port_status">The current state of port</string>
+    <string name="ip_content_not_non">Address should be filled</string>
+    <!--v1.2-->
+
 
 </resources>

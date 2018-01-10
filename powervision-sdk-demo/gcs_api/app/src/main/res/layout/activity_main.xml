@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.powervision.powersdk.MainActivity">
+    tools:context="com.powervision.powersdk.MountActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -25,7 +25,7 @@
                 android:id="@+id/connect_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="连接设备" />
+                android:text="@string/connect_devies" />
 
             <TextView
                 android:id="@+id/status_text"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:gravity="center"
-                android:text="未连接"
+                android:text="@string/disconnected"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="24sp" />
 
@@ -54,13 +54,13 @@
                     android:id="@+id/read_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="读取数据" />
+                    android:text="@string/read_data" />
 
                 <Button
                     android:id="@+id/clear_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="清除数据" />
+                    android:text="@string/clear_data" />
             </LinearLayout>
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_height="180dp"
                 android:layout_marginLeft="8dp"
                 android:background="@android:color/holo_purple"
-                android:hint="接收数据显示区"
+                android:hint="@string/receive_data_display_area"
                 android:padding="16dp" />
 
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/status_text"
                 android:layout_centerHorizontal="true"
-                android:text="发送数据" />
+                android:text="@string/send_data" />
 
             <EditText
                 android:id="@+id/send_content"
@@ -93,7 +93,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="8dp"
                 android:background="@android:color/holo_purple"
-                android:hint="发送数据显示区"
+                android:hint="@string/send_data_zone"
                 android:padding="16dp" />
 
         </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:background="@color/colorPrimary"
-            android:text="断开设备"
+            android:text="@string/disconn_device"
             android:visibility="gone" />
 
 
@@ -133,7 +133,7 @@
                     android:id="@+id/set_port_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="端口管理" />
+                    android:text="@string/port_management" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="6dp"
-                android:text="查询" />
+                android:text="@string/inquire" />
 
             <Button
                 android:id="@+id/set_btn"
@@ -201,7 +201,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="6dp"
-                android:text="设置" />
+                android:text="@string/setting" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

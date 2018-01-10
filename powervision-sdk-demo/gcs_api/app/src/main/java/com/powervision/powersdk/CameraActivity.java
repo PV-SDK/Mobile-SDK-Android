@@ -18,15 +18,16 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.powervision.powersdk.callback.CameraCallback;
-import com.powervision.powersdk.callback.RemoteControlCallback;
-import com.powervision.powersdk.callback.SystemStatusCallback;
 import com.powervision.powersdk.core.PowerSDK;
 import com.powervision.powersdk.factory.ConnectIpAndPortFactory;
+import com.powervision.powersdk.listener.CameraControlListener;
 import com.powervision.powersdk.listener.ConnectListener;
+import com.powervision.powersdk.listener.RemoteControlListener;
+import com.powervision.powersdk.listener.SystemStatusListener;
 import com.powervision.powersdk.param.BatteryStatusNotifyParam;
 import com.powervision.powersdk.param.camera.CameraParams;
 import com.powervision.powersdk.param.camera.PVParameter;
+import com.powervision.powersdk.utils.ToastUtil;
 import com.vxfly.vflibrary.video.VFSurfaceView;
 import com.vxfly.vflibrary.video.VFVideo;
 import com.vxfly.vflibrary.video.VFVideoListener;
@@ -187,14 +188,14 @@ public class CameraActivity extends AppCompatActivity {
      */
     private void startConnection() {
         // ip = "192.168.1.12"; port = 20002;
-        mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEggConnectIpAndPortFactory());
+        mPowerSDK.startConnectSDK(ConnectIpAndPortFactory.getEyeConnectIpAndPortFactory());
         mPowerSDK.addConnectListener(simpleConnectListener);
         mPowerSDK.startRegisterConnectCallback();
         mPowerSDK.startConnectChain();
 
         //set camera  listener
-        mPowerSDK.setCameraListener(mCameraListener);
-        mPowerSDK.setCameraParamListener(mCameraParamListener);
+        mPowerSDK.addCameraListener(mCameraListener);
+        mPowerSDK.addCameraParamListener(mCameraParamListener);
     }
 
     private void stopPowerSDK() {
@@ -240,7 +241,7 @@ public class CameraActivity extends AppCompatActivity {
                 String[] evArray = CameraActivity.this.getResources().getStringArray(R.array.PV_CAM_EXP_MU_VALUE);
 
                 int pos = Integer.valueOf(evArray[position]);
-                mPowerSDK.setParameter(CameraParams.PV_CAM_EXP_MU, Float.intBitsToFloat(pos));
+                mPowerSDK.setParameterParams(CameraParams.PV_CAM_EXP_MU, Float.intBitsToFloat(pos));
                 Log.e(TAG, "evSpinner ... position=" + position);
             }
 
@@ -473,7 +474,7 @@ public class CameraActivity extends AppCompatActivity {
         if (position < minValue) {
             position = minValue;
         }
-        mPowerSDK.setParameter(paramId, Float.intBitsToFloat(position));
+        mPowerSDK.setParameterParams(paramId, Float.intBitsToFloat(position));
         return position;
     }
 
@@ -498,7 +499,7 @@ public class CameraActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mPowerSDK.requestParameter(CameraParams.PV_CAM_STAT);
+                    mPowerSDK.startRequestParameter(CameraParams.PV_CAM_STAT);
                 }
             });
         }
@@ -560,13 +561,13 @@ public class CameraActivity extends AppCompatActivity {
                 setRemoteControlMode(2);
                 break;
             case R.id.take_picture_capacity://剩余拍照数量
-                mPowerSDK.requestParameter(PVParameter.PV_CAM_SD_PLEFT);
+                mPowerSDK.startRequestParameter(PVParameter.PV_CAM_SD_PLEFT);
                 break;
             case R.id.reset://恢复出厂设置
-                mPowerSDK.resetToCameraFactory(7);//
+                mPowerSDK.resetFactorySetting(7);//
                 break;
             case R.id.format_sd_card://格式化sdk卡
-                mPowerSDK.formatSD(6);
+                mPowerSDK.formatSdCard(6);
                 break;
             case R.id.camera_setting_hide:
                 hideCameraSetting();
@@ -577,7 +578,6 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * 设置白平衡值(手动)
      */
@@ -585,35 +585,31 @@ public class CameraActivity extends AppCompatActivity {
         if (isAutoBalance) return;
         else {
             //白平衡 手动设置 具体值 （-100~ 100）
-            mPowerSDK.setParameter(CameraParams.PV_CAM_WB_V, Float.intBitsToFloat(50));//自动切换模式   错误
+            mPowerSDK.setParameterParams(CameraParams.PV_CAM_WB_V, Float.intBitsToFloat(50));//自动切换模式   错误
         }
     }
 
     private void getWhiteBalanceMode(int mode) {
-        if (mode == 51) {
-            isAutoBalance = true;
-        } else {
-            isAutoBalance = false;
-        }
+        isAutoBalance = mode == 51;
     }
 
     /**
      * 获取遥控器控制模式（日本手/美国手）
      */
     private void getRemoteControllerMode() {
-        mPowerSDK.setRemoteControlParamListener(remoteControlParamListener);
-        mPowerSDK.requestParameter(PVParameter.PV_RC_MODE);
+        mPowerSDK.addRemoteControlParamListener(remoteControlParamListener);
+        mPowerSDK.startRequestParameter(PVParameter.PV_RC_MODE);
     }
 
     /**
      * 设置遥控器控制模式
      * <p>
-     * 设置成功后在{@link RemoteControlCallback.RemoteControlParamListener#onRemoteControlSetSuccess}回调
+     * 设置成功后在{@link RemoteControlListener.RemoteControlParamListener#onRemoteControlSetSuccess}回调
      *
      * @param type 控制模式类型（1日本手，2美国手）
      */
     private void setRemoteControlMode(int type) {
-        mPowerSDK.setParameter(PVParameter.PV_RC_MODE, type);//callback remoteControlParamListener
+        mPowerSDK.setParameterParams(PVParameter.PV_RC_MODE, type);//callback remoteControlParamListener
     }
 
     @Override
@@ -633,10 +629,10 @@ public class CameraActivity extends AppCompatActivity {
     /**
      * 设获取电池信息
      * <p>
-     * 设置成功后在{@link SystemStatusCallback.BatteryStatusListener#onBatteryStatus}回调
+     * 设置成功后在{@link SystemStatusListener.BatteryStatusListener#onBatteryStatus}回调
      */
     private void startGetBatteryInfo() {
-        mPowerSDK.setBatteryStatusListener(batteryStatusListener);
+        mPowerSDK.addBatteryStatusListener(batteryStatusListener);
     }
 
     private int[] voltages = null;
@@ -651,7 +647,6 @@ public class CameraActivity extends AppCompatActivity {
         batteryTemperature.setText(getString(R.string.temperature) + temperature + getString(R.string.temperature_tag));
     }
 
-
     /**
      * 控制云台移动
      *
@@ -664,6 +659,7 @@ public class CameraActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("HandlerLeak")
     class MyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -713,7 +709,7 @@ public class CameraActivity extends AppCompatActivity {
             cameraSettingLayout.setVisibility(View.VISIBLE);
             return;
         }
-        mPowerSDK.requestParameter(CameraParams.PV_CAM_REQ_ALL);
+        mPowerSDK.startRequestParameter(CameraParams.PV_CAM_REQ_ALL);
     }
 
     private boolean isShowCameraViews = true;
@@ -726,12 +722,12 @@ public class CameraActivity extends AppCompatActivity {
 
     private void startRecodOrTakePhoto() {
         if (!isRecordMode) {
-            mPowerSDK.stillCapture();
+            mPowerSDK.startCapture();
         } else {
             if (isRecording) {
-                mPowerSDK.recStop();
+                mPowerSDK.stopRecord();
             } else {
-                mPowerSDK.recStart();
+                mPowerSDK.startRecord();
             }
         }
     }
@@ -746,53 +742,54 @@ public class CameraActivity extends AppCompatActivity {
             return;
         }
         if (isRecordMode) {
-            mPowerSDK.stillCaptureMode();
+            mPowerSDK.switchCaptureMode();
         } else {
-            mPowerSDK.recMode();
+            mPowerSDK.switchRecordMode();
         }
     }
 
 
-    RemoteControlCallback.RemoteControlParamListener remoteControlParamListener = new RemoteControlCallback.RemoteControlParamListener() {
+    RemoteControlListener.RemoteControlParamListener remoteControlParamListener =
+            new RemoteControlListener.RemoteControlParamListener() {
 
-        @Override
-        public void onRemoteControlSetSuccess(String paramID) {
-            switch (paramID) {
-                case PVParameter.PV_RC_MODE://设置 遥控器模式成功
-                    int mRockerType = (int) mPowerSDK.getParameter(paramID);
-                    Message msg = new Message();
-                    msg.what = 2;
-                    msg.arg1 = mRockerType;
-                    mHandler.sendMessage(msg);
-                    break;
-            }
-        }
+                @Override
+                public void onRemoteControlSetSuccess(String paramID) {
+                    switch (paramID) {
+                        case PVParameter.PV_RC_MODE://设置 遥控器模式成功
+                            int mRockerType = (int) mPowerSDK.startGetParameter(paramID);
+                            Message msg = new Message();
+                            msg.what = 2;
+                            msg.arg1 = mRockerType;
+                            mHandler.sendMessage(msg);
+                            break;
+                    }
+                }
 
-        @Override
-        public void onRemoteControlSetTimeout(String paramID) {
-            switch (paramID) {
-                case PVParameter.PV_RC_MODE:
-                    break;
-            }
-        }
+                @Override
+                public void onRemoteControlSetTimeout(String paramID) {
+                    switch (paramID) {
+                        case PVParameter.PV_RC_MODE:
+                            break;
+                    }
+                }
 
-        @Override
-        public void onRemoteControlGetSuccess(String paramID) {
-            switch (paramID) {
-                case PVParameter.PV_RC_MODE://获取遥控器 控制模式 成功
-                    int mRockerType = (int) mPowerSDK.getParameter(paramID);
-                    Message msg = new Message();
-                    msg.what = 2;
-                    msg.arg1 = mRockerType;
-                    mHandler.sendMessage(msg);
-                    break;
-            }
-        }
+                @Override
+                public void onRemoteControlGetSuccess(String paramID) {
+                    switch (paramID) {
+                        case PVParameter.PV_RC_MODE://获取遥控器 控制模式 成功
+                            int mRockerType = (int) mPowerSDK.startGetParameter(paramID);
+                            Message msg = new Message();
+                            msg.what = 2;
+                            msg.arg1 = mRockerType;
+                            mHandler.sendMessage(msg);
+                            break;
+                    }
+                }
 
-        @Override
-        public void onRemoteControlGetTimeout(String paramID) {
-        }
-    };
+                @Override
+                public void onRemoteControlGetTimeout(String paramID) {
+                }
+            };
 
     boolean isNeedReconnect = true;
     VFVideoListener mVideoListener = new VFVideoListener() {
@@ -832,22 +829,7 @@ public class CameraActivity extends AppCompatActivity {
             switch (result) {
                 case VFVideo.VF_Success://解码并渲染视频帧成功
 //                    isRecording = true;
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",解码并渲染视频帧成功");
-                    break;
-                case VFVideo.VF_BrokenFrame://解码成功但视频帧不完整，该帧被正常渲染
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",解码成功但视频帧不完整，该帧被正常渲染");
-                    break;
-                case VFVideo.VF_SkipFrame://解码成功但视频帧不完整，该帧已被屏蔽
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",解码成功但视频帧不完整，该帧已被屏蔽");
-                    break;
-                case VFVideo.VF_RecvTimeout://超时未收到帧信息
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",超时未收到帧信息");
-                    break;
-                case VFVideo.VF_RtspClosed://RTSP连接已关闭
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",RTSP连接已关闭");
-                    break;
-                case VFVideo.VF_NoVideo://没有打开视频
-                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + ",IsPlaying=" + mVideo.IsPlaying() + "没有打开视频");
+                    Log.e(TAG, "onVFVideoDidDrawFrame: result=" + result + "  Success");
                     break;
                 default:
             }
@@ -914,7 +896,7 @@ public class CameraActivity extends AppCompatActivity {
         }).start();
     }
 
-    CameraCallback.CameraParamListener mCameraParamListener = new CameraCallback.CameraParamListener() {
+    CameraControlListener.CameraParamListener mCameraParamListener = new CameraControlListener.CameraParamListener() {
 
         @Override
         public void onCameraParamSetSuccess(String paramId) {
@@ -940,7 +922,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     };
 
-    private void onUpdateCamerData(String paramId) {
+    private void onUpdateCamerData(String paramId/*,boolean doGet*/) {
         if (!TextUtils.isEmpty(paramId)) {
             if (paramId.equals(CameraParams.PV_CAM_ISO)) {
                 upDateSpinnerDate(51, 70, paramId, isoSpinner);
@@ -950,7 +932,7 @@ public class CameraActivity extends AppCompatActivity {
 
             } else if (paramId.equals(CameraParams.PV_CAM_EXP_MU)) {
                 if (isInitSpinner) return;
-                int paramsPosition = Float.floatToRawIntBits(mPowerSDK.getParameter(paramId));// 4,14,24
+                int paramsPosition = Float.floatToRawIntBits(mPowerSDK.startGetParameter(paramId));// 4,14,24
                 String[] evArray = CameraActivity.this.getResources().getStringArray(R.array.PV_CAM_EXP_MU_VALUE);
                 String s = String.valueOf(paramsPosition);
                 int index = 0;
@@ -963,7 +945,6 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
                 final int finalIndex = index;
-                Log.e("simon","。。。index ="+index );
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -996,7 +977,7 @@ public class CameraActivity extends AppCompatActivity {
             } else if (paramId.equals(CameraParams.PV_CAM_WB)) {
                 upDateSpinnerDate(51, 52, paramId, whiteBalanceSpinner);
             } else if (paramId.equals(CameraParams.PV_CAM_WB_V)) {//手动设置白平衡值
-                final int whiteBalance = Float.floatToRawIntBits(mPowerSDK.getParameter(paramId)) - 100;
+                final int whiteBalance = Float.floatToRawIntBits(mPowerSDK.startGetParameter(paramId)) - 100;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -1027,7 +1008,7 @@ public class CameraActivity extends AppCompatActivity {
                 upDateSpinnerDate(0, 2, paramId, imageSharpnessSpinner);
 
             } else if (paramId.equals(CameraParams.PV_CAM_SD_PLEFT)) {
-                final int paramsPosition = Float.floatToRawIntBits(mPowerSDK.getParameter(paramId));
+                final int paramsPosition = Float.floatToRawIntBits(mPowerSDK.startGetParameter(paramId));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -1039,34 +1020,34 @@ public class CameraActivity extends AppCompatActivity {
 
             } else if (paramId.equals(CameraParams.SD_FORMAT)) {
                 Log.e(TAG, " SD_FORMAT ...ok");
-            }
-        } else if (paramId.equals(CameraParams.PV_CAM_STAT)) {
-            //相机状态：，1：拍照模式  2：录像模式  3：录像中  4：error
-            int mCameraStatus = Float.floatToRawIntBits(mPowerSDK.getParameter(paramId));
-            if (paramId.equals("PV_CAM_STAT")) {
-                switch (mCameraStatus) {
-                    case 1:
-                        Log.e(TAG, "photo mode");
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                changeViews();
-                            }
-                        });
-                        break;
-                    case 2://没有录像 默认
-                        Log.e(TAG, "recod mode");
-                        break;
-                    case 3://remoteControl
-                        isRecording = true;
-                        Log.e(TAG, "recoding");
-                        break;
-                    case 4:
-                        Log.e(TAG, "PV_CAM_STAT  error ...");
-                        break;
-                    default:
-                        break;
+            } else if (paramId.equals(CameraParams.PV_CAM_STAT)) {
+                //相机状态：，1：拍照模式  2：录像模式  3：录像中  4：error
+                int mCameraStatus = Float.floatToRawIntBits(mPowerSDK.startGetParameter(paramId));
+                if (paramId.equals("PV_CAM_STAT")) {
+                    switch (mCameraStatus) {
+                        case 1:
+                            Log.e(TAG, "photo mode");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    changeViews();
+                                }
+                            });
+                            break;
+                        case 2://没有录像 默认
+                            Log.e(TAG, "recod mode");
+                            break;
+                        case 3://remoteControl
+                            isRecording = true;
+                            Log.e(TAG, "recoding");
+                            break;
+                        case 4:
+                            Log.e(TAG, "PV_CAM_STAT  error ...");
+                            break;
+                        default:
+                            break;
 
+                    }
                 }
             }
         }
@@ -1076,14 +1057,14 @@ public class CameraActivity extends AppCompatActivity {
      * minValue and maxValue ,see res/values/arrays, camera setting.
      * The range of the corresponding instruction
      *
-     * @param minValue    对应的接口设置起始值
-     * @param maxValue    对应接口的最大设置值
+     * @param minValue    对应的接口设置起始值{@link CameraParams}
+     * @param maxValue    对应接口的最大设置值  {@link CameraParams}
      * @param paramId     设置camera对应的请求指令
      * @param tempSpinner 对应的spinner
      */
     private void upDateSpinnerDate(int minValue, int maxValue, String paramId,
                                    final Spinner tempSpinner) {
-        int paramsPosition = Float.floatToRawIntBits(mPowerSDK.getParameter(paramId));
+        int paramsPosition = Float.floatToRawIntBits(mPowerSDK.startGetParameter(paramId));
         if (paramsPosition > maxValue) {
             paramsPosition = maxValue;
         }
@@ -1101,136 +1082,116 @@ public class CameraActivity extends AppCompatActivity {
     }
 
 
-    CameraCallback.CameraListener mCameraListener = new CameraCallback.CameraListener() {
-
-        @Override
-        public void onCameraExists() {
-            Log.e(TAG, "...onCameraExists ... ");
-        }
-
-        @Override
-        public void onCameraRecStopEnd() {
-            Log.e(TAG, "...onCameraRecStopEnd ... ");
-            isRecording = false;
-        }
-
-        @Override
-        public void onCameraRecRecing() {
-            isRecording = true;
-            Log.e(TAG, "...onCameraRecRecing ... ");
-
-        }
-
-        @Override
-        public void onCameraRecStartError() {
-            Log.e(TAG, "...onCameraRecStartError ... ");
-        }
-
-        @Override
-        public void onCameraRecStopError() {
-            Log.e(TAG, "...onCameraRecStopError ... ");
-        }
-
-        @Override
-        public void onCameraRecMode() {
-            runOnUiThread(new Runnable() {
+    CameraControlListener.CameraParamListener.SimpleCameraListener mCameraListener =
+            new CameraControlListener.CameraParamListener.SimpleCameraListener() {
                 @Override
-                public void run() {
-                    cameraAction.setText(getString(R.string.camera_record));
-                    isRecordMode = !isRecordMode;
+                public void onCameraRecStopEnd() {
+                    Log.e(TAG, "...onCameraRecStopEnd ... ");
+                    isRecording = false;
                 }
-            });
-            Log.e(TAG, "...onCameraRecMode ... ");
-        }
 
-        @Override
-        public void onCameraRecModeError() {
-            Log.e(TAG, "...onCameraRecModeError ... ");
-        }
-
-        @Override
-        public void onCameraStillCaptureEnd() {
-            Log.e(TAG, "...onCameraStillCaptureEnd ... ");
-        }
-
-        @Override
-        public void onCameraStillCaptureing() {
-            Log.e(TAG, "...onCameraStillCaptureing ... ");
-        }
-
-        @Override
-        public void onCameraStillCaptureError() {
-            Log.e(TAG, "...onCameraStillCaptureError ... ");
-        }
-
-        @Override
-        public void onCameraStillCaptureMode() {
-            runOnUiThread(new Runnable() {
                 @Override
-                public void run() {
-                    cameraAction.setText(getString(R.string.camera_take_photo));
-                    isRecordMode = !isRecordMode;
+                public void onCameraRecRecing() {
+                    isRecording = true;
+                    Log.e(TAG, "...onCameraRecRecing ... ");
+
                 }
-            });
-            Log.e(TAG, "...onCameraStillCaptureMode ... ");
-        }
 
-        @Override
-        public void onCameraStillCaptureModeError() {
-        }
+                @Override
+                public void onCameraRecMode() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            cameraAction.setText(getString(R.string.camera_record));
+                            isRecordMode = !isRecordMode;
+                        }
+                    });
+                    Log.e(TAG, "...onCameraRecMode ... ");
+                }
 
-        @Override
-        public void onCameraFormatSDSuccess() {
-        }
+                @Override
+                public void onCameraStillCaptureMode() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            cameraAction.setText(getString(R.string.camera_take_photo));
+                            isRecordMode = !isRecordMode;
+                        }
+                    });
+                    Log.e(TAG, "...onCameraStillCaptureMode ... ");
+                }
 
-        @Override
-        public void onCameraFormatSDFailed() {
-        }
+                @Override
+                public void onCameraCameraSDFull() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_full));
+                        }
+                    });
 
-        @Override
-        public void onCameraResetToCameraFactorySuccess() {
-        }
+                }
 
-        @Override
-        public void onCameraResetToCameraFactoryFailed() {
-        }
+                @Override
+                public void onCameraCameraSDErr() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_error));
+                        }
+                    });
 
-        @Override
-        public void onCameraRecSettingSuccess() {
-        }
+                }
 
-        @Override
-        public void onCameraRecSettingFailed() {
-        }
+                @Override
+                public void onCameraCameraSDEmpty() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_empty));
+                        }
+                    });
 
-        @Override
-        public void onCameraCaptureSettingSuccess() {
-        }
+                }
 
-        @Override
-        public void onCameraCaptureSettingFailed() {
-        }
+                @Override
+                public void onCameraCameraRecSDFull() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_full));
+                        }
+                    });
 
-        @Override
-        public void onCameraPictureSettingSuccess() {
-        }
+                }
 
-        @Override
+                @Override
+                public void onCameraCameraRecSDErr() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_error));
+                        }
+                    });
+                }
 
-        public void onCameraPictureSettingFailed() {
-        }
-
-        @Override
-        public void onCameraCameraFeedBackTimeout() {
-        }
-    };
+                @Override
+                public void onCameraCameraRecSDEmpty() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getString(R.string.sd_empty));
+                        }
+                    });
+                }
+            };
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
 
-    SystemStatusCallback.BatteryStatusListener batteryStatusListener = new SystemStatusCallback.BatteryStatusListener() {
+    SystemStatusListener.BatteryStatusListener batteryStatusListener = new SystemStatusListener.BatteryStatusListener() {
         @Override
         public void onBatteryStatus(BatteryStatusNotifyParam param) {
             voltages = param.voltages;

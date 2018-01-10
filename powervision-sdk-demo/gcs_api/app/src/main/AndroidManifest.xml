@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -43,13 +42,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".MountActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".CameraActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".LocationActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

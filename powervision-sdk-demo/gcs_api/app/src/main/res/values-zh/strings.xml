@@ -62,5 +62,56 @@
     <string name="hide_camera">隐藏相机设置</string>
     <string name="white_balance_value">白平衡值：</string>
 
+    <!-- v1.2-->
+    <string name="attitude">获取姿态信息</string>
+    <string name="gps_info">GPS信息</string>
+    <string name="device_dis_connect">设备未连接</string>
+    <string name="set_way_point">设置航点</string>
+    <string name="automatic_return">自动返航</string>
+    <string name="device_connected">设备已连接</string>
+    <string name="position">飞控与坐标</string>
+    <string name="excute_way_point">开始航点飞行</string>
+    <string name="satellites_num">卫星颗数</string>
+    <string name="sd_empty">sd卡为空</string>
+    <string name="sd_full">sd卡已满</string>
+    <string name="sd_error">sd卡出错</string>
+    <string name="point_content">lat：%1$f  lon：%2$f  z:%3$fm</string>
+    <string name="attitude_pitch">pitch：%1$f</string>
+    <string name="attitude_roll">roll：%1$f</string>
+    <string name="attitude_yaw">yaw：%1$f</string>
+    <string name="attitude_vx">x：%1$f m/s</string>
+    <string name="attitude_vy">y：%1$f m/s</string>
+    <string name="attitude_vz">z：%1$f m/s</string>
+    <string name="attitude_alt">alt：%1$f m</string>
+    <string name="attitude_relative_alt">relativeAlt：%1$f m</string>
+    <string name="attitude_lat">lat：%1$f</string>
+    <string name="attitude_lon">lon：%1$f</string>
+    <string name="attitude_satellites">satellites number：%1$d </string>
+    <string name="fly_yaw">航向角度</string>
+    <string name="fly_roll">横滚</string>
+    <string name="fly_pitch">俯仰</string>
+    <string name="fly_lon">经度</string>
+    <string name="fly_lat">纬度</string>
+    <string name="fly_relative_alt">绝对高度</string>
+    <string name="fly_alt">海拔高度</string>
+    <string name="fly_vz">z轴速度</string>
+    <string name="fly_vy">y轴速度</string>
+    <string name="fly_vx">x轴速度</string>
+    <string name="fly_points">航点</string>
+    <string name="auto_rtl">自动返航</string>
+    <string name="fly_point_set_sukccess">航点发送成功</string>
+    <string name="plaese_arm">请解锁</string>
+    <string name="exe_way_point">航点飞行</string>
+    <string name="back_last_mode">返回上一次模式</string>
+
+    <string name="mode_not_exe">非遥控器三种模式</string>
+    <string name="way_point_data_errro">请设置航点</string>
+    <string name="please_unlock">请解锁设备</string>
+    <string name="link_connected">链路已连接</string>
+    <string name="content_not_non">内容不能为空</string>
+    <string name="current_port_status">当前端口状态</string>
+    <string name="ip_content_not_non">地址不能为空</string>
+    <!--v1.2-->
+
 
 </resources>

@@ -16,6 +16,8 @@ public class FounctionListActivity extends AppCompatActivity {
     Button mount;
     @BindView(R.id.camera)
     Button camera;
+    @BindView(R.id.position)
+    Button position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +27,17 @@ public class FounctionListActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.mount, R.id.camera})
+    @OnClick({R.id.mount, R.id.camera, R.id.position})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.mount:
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MountActivity.class));
                 break;
             case R.id.camera:
-                startActivity(new Intent(this,CameraActivity.class));
+                startActivity(new Intent(this, CameraActivity.class));
+                break;
+            case R.id.position:
+                startActivity(new Intent(this, LocationActivity.class));
                 break;
         }
     }

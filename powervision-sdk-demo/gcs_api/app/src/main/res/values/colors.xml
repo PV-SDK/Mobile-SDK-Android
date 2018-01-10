@@ -8,4 +8,5 @@
     <color name="connecting">#00ff00</color>
     <color name="red">@android:color/holo_red_dark</color>
     <color name="light_blue">#A0ADEB</color>
+    <color name="item_info_bg">#A3A0FE</color>
 </resources>
