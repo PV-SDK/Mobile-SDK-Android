@@ -57,7 +57,7 @@
 
     <LinearLayout
         android:id="@+id/info_layout"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@color/item_info_bg"
         android:orientation="vertical"
