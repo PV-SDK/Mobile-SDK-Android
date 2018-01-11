@@ -75,6 +75,7 @@
     <string name="sd_empty">sd卡为空</string>
     <string name="sd_full">sd卡已满</string>
     <string name="sd_error">sd卡出错</string>
+
     <string name="point_content">lat：%1$f  lon：%2$f  z:%3$fm</string>
     <string name="attitude_pitch">pitch：%1$f</string>
     <string name="attitude_roll">roll：%1$f</string>
@@ -97,7 +98,6 @@
     <string name="fly_vz">z轴速度</string>
     <string name="fly_vy">y轴速度</string>
     <string name="fly_vx">x轴速度</string>
-    <string name="fly_points">航点</string>
     <string name="auto_rtl">自动返航</string>
     <string name="fly_point_set_sukccess">航点发送成功</string>
     <string name="plaese_arm">请解锁</string>
